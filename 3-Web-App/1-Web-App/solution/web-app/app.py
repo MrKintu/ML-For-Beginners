@@ -1,10 +1,13 @@
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
+import os
 
 app = Flask(__name__)
 
-model = pickle.load(open("../ufo-model.pkl", "rb"))
+# Get the absolute path to the model file
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "ufo-model.pkl")
+model = pickle.load(open(model_path, "rb"))
 
 
 @app.route("/")

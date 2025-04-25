@@ -20,13 +20,13 @@ In this lesson you will learn:
 
 Building applied ML systems is an important part of leveraging these technologies for your business systems. You can use models within your web applications (and thus use them in an offline context if needed) by using Onnx.
 
-In a [previous lesson](../../3-Web-App/1-Web-App/README.md), you built a Regression model about UFO sightings, "pickled" it, and used it in a Flask app. While this architecture is very useful to know, it is a full-stack Python app, and your requirements may include the use of a JavaScript application. 
+In a [previous lesson](../../3-Web-App/1-Web-App/README.md), you built a Regression model about UFO sightings, "pickled" it, and used it in a Flask app. While this architecture is very useful to know, it is a full-stack Python app, and your requirements may include the use of a JavaScript application.
 
 In this lesson, you can build a basic JavaScript-based system for inference. First, however, you need to train a model and convert it for use with Onnx.
 
 ## Exercise - train classification model
 
-First, train a classification model using the cleaned cuisines dataset we used. 
+First, train a classification model using the cleaned cuisines dataset we used.
 
 1. Start by importing useful libraries:
 
@@ -135,7 +135,7 @@ Make sure to do the conversion with the proper Tensor number. This dataset has 3
         f.write(onx.SerializeToString())
     ```
 
-    > Note, you can pass in [options](https://onnx.ai/sklearn-onnx/parameterized.html) in your conversion script. In this case, we passed in 'nocl' to be True and 'zipmap' to be False. Since this is a classification model, you have the option to remove ZipMap which produces a list of dictionaries (not necessary). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > Note, you can pass in [options](https://onnx.ai/sklearn-onnx/parameterized.html) in your conversion script. In this case, we passed in 'nocl' to be True and 'zipmap' to be False. Since this is a classification model, you have the option to remove ZipMap which produces a list of dictionaries (not necessary). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'.
 
 Running the entire notebook will now build an Onnx model and save it to this folder.
 
@@ -214,7 +214,7 @@ You can use your model directly in a web app. This architecture also allows you 
 
     Notice that each checkbox is given a value.  This reflects the index where the ingredient is found according to the dataset. Apple, for example, in this alphabetic list, occupies the fifth column, so its value is '4' since we start counting at 0. You can consult the [ingredients spreadsheet](../data/ingredient_indexes.csv) to discover a given ingredient's index.
 
-    Continuing your work in the index.html file, add a script block where the model is called after the final closing `</div>`. 
+    Continuing your work in the index.html file, add a script block where the model is called after the final closing `</div>`.
 
 1. First, import the [Onnx Runtime](https://www.onnxruntime.ai/):
 
@@ -295,6 +295,7 @@ Open a terminal session in Visual Studio Code in the folder where your index.htm
 ![ingredient web app](images/web-app.png)
 
 Congratulations, you have created a 'recommendation' web app  with a few fields. Take some time to build out this system!
+
 ## 🚀Challenge
 
 Your web app is very minimal, so continue to build it out using ingredients and their indexes from the [ingredient_indexes](../data/ingredient_indexes.csv) data. What flavor combinations work to create a given national dish?
@@ -305,10 +306,10 @@ Your web app is very minimal, so continue to build it out using ingredients and 
 
 While this lesson just touched on the utility of creating a recommendation system for food ingredients, this area of ML applications is very rich in examples. Read some more about how these systems are built:
 
-- https://www.sciencedirect.com/topics/computer-science/recommendation-engine
-- https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
-- https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/
+- <https://www.sciencedirect.com/topics/computer-science/recommendation-engine>
+- <https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/>
+- <https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/>
 
-## Assignment 
+## Assignment
 
 [Build a new recommender](assignment.md)

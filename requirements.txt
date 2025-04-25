@@ -1,7 +1,12 @@
+jupyter
 scikit-learn
 pandas
 numpy
 flask
+flask-cors
 tensorflow
 matplotlib
 seaborn
+skl2onnx
+onnx
+onnxruntime

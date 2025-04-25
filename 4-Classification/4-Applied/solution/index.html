@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <header>
+    <head>
+        <meta charset="utf-8">
         <title>Cuisine Matcher</title>
-    </header>
+    </head>
     <body>
         <h1>Check your refrigerator. What can you create?</h1>
         <div id="wrapper">
@@ -42,56 +43,59 @@
             </div>
         </div>
         <div style="padding-top:10px">
-            <button onClick="startInference()">What kind of cuisine can you make?</button>
-        </div>      
-        <!-- import ONNXRuntime Web from CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script>
-        <script>
+            <button type="button" onclick="startInference()">What kind of cuisine can you make?</button>
+        </div>
+        <div id="result" style="margin-top:20px; font-size:1.2em; font-weight:bold;"></div>
+    </body>      
+    <!-- import ONNXRuntime Web from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script>
+    <script>
+        // NOTE: This page must be served via a web server (not file://)
+        // Model input/output names per ONNX inspection:
+        const MODEL_INPUT_NAME = "float_input";
+        const MODEL_OUTPUT_LABEL = "output_label";
+        const MODEL_OUTPUT_PROB = "output_probability";
+
         const ingredients = Array(380).fill(0);
-        
         const checks = [...document.querySelectorAll('.checkbox')];
-        
+
         checks.forEach(check => {
             check.addEventListener('change', function() {
-                // toggle the state of the ingredient
-                // based on the checkbox's value (1 or 0)
                 ingredients[check.value] = check.checked ? 1 : 0;
             });
         });
 
         function testCheckboxes() {
-            // validate if at least one checkbox is checked
             return checks.some(check => check.checked);
         }
 
         async function startInference() {
-
-            let atLeastOneChecked = testCheckboxes()
-
+            let atLeastOneChecked = testCheckboxes();
+            const resultDiv = document.getElementById('result');
             if (!atLeastOneChecked) {
-                alert('Please select at least one ingredient.');
+                resultDiv.textContent = 'Please select at least one ingredient.';
                 return;
             }
             try {
-                // create a new session and load the model.
-                
-                const session = await ort.InferenceSession.create('./model.onnx');
-
-                const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
-                const feeds = { float_input: input };
-
-                // feed inputs and run
-                const results = await session.run(feeds);
-
-                // read from results
-                alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
-
+                // Send POST request to server
+                const response = await fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ingredients })
+                });
+                if (!response.ok) {
+                    throw new Error('Server error: ' + response.status);
+                }
+                const result = await response.json();
+                let message = 'You can enjoy ' + result.label + ' cuisine today!';
+                if (result.probability !== null) {
+                    message += ` (Confidence: ${(result.probability*100).toFixed(1)}%)`;
+                }
+                resultDiv.textContent = message;
             } catch (e) {
-                console.log(`failed to inference ONNX model`);
+                resultDiv.textContent = 'Failed to run inference. See console for details.';
                 console.error(e);
             }
         }
-               
     </script>
-    </body>
 </html>

@@ -10,3 +10,5 @@ seaborn
 skl2onnx
 onnx
 onnxruntime
+textblob
+nltk

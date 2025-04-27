@@ -1,6 +1,6 @@
 # Common natural language processing tasks and techniques
 
-For most *natural language processing* tasks, the text to be processed, must be broken down, examined, and the results stored or cross referenced with rules and data sets. These tasks, allows the programmer to derive the _meaning_ or _intent_ or only the _frequency_ of terms and words in a text.
+For most *natural language processing* tasks, the text to be processed, must be broken down, examined, and the results stored or cross referenced with rules and data sets. These tasks, allows the programmer to derive the *meaning_or*intent_or only the *frequency_ of terms and words in a text.
 
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
 
@@ -59,26 +59,26 @@ A text can be split into sequences of words of a set length, a single word (unig
 
 For instance `the quick red fox jumped over the lazy brown dog` with a n-gram score of 2 produces the following n-grams:
 
-1. the quick 
-2. quick red 
+1. the quick
+2. quick red
 3. red fox
-4. fox jumped 
-5. jumped over 
-6. over the 
-7. the lazy 
-8. lazy brown 
+4. fox jumped
+5. jumped over
+6. over the
+7. the lazy
+8. lazy brown
 9. brown dog
 
 It might be easier to visualize it as a sliding box over the sentence. Here it is for n-grams of 3 words, the n-gram is in bold in each sentence:
 
-1.   <u>**the quick red**</u> fox jumped over the lazy brown dog
-2.   the **<u>quick red fox</u>** jumped over the lazy brown dog
-3.   the quick **<u>red fox jumped</u>** over the lazy brown dog
-4.   the quick red **<u>fox jumped over</u>** the lazy brown dog
-5.   the quick red fox **<u>jumped over the</u>** lazy brown dog
-6.   the quick red fox jumped **<u>over the lazy</u>** brown dog
-7.   the quick red fox jumped over <u>**the lazy brown**</u> dog
-8.   the quick red fox jumped over the **<u>lazy brown dog</u>**
+1. <u>**the quick red**</u> fox jumped over the lazy brown dog
+2. the **<u>quick red fox</u>** jumped over the lazy brown dog
+3. the quick **<u>red fox jumped</u>** over the lazy brown dog
+4. the quick red **<u>fox jumped over</u>** the lazy brown dog
+5. the quick red fox **<u>jumped over the</u>** lazy brown dog
+6. the quick red fox jumped **<u>over the lazy</u>** brown dog
+7. the quick red fox jumped over <u>**the lazy brown**</u> dog
+8. the quick red fox jumped over the **<u>lazy brown dog</u>**
 
 ![n-grams sliding window](images/n-grams.gif)
 
@@ -120,9 +120,9 @@ Luckily, you don't have to build all of these techniques yourself, as there are 
 
 Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
 
-> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
+> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers
 
-When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. 
+When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases.
 
 1. Take a look at `ConllExtractor`.
 
@@ -147,7 +147,7 @@ In the previous lesson you built a very simple Q&A bot. Now, you'll make Marvin 
 Your steps when building a better conversational bot:
 
 1. Print instructions advising the user how to interact with the bot
-2. Start loop 
+2. Start loop
    1. Accept user input
    2. If user has asked to exit, then exit
    3. Process user input and determine appropriate sentiment response
@@ -209,6 +209,6 @@ Take a task in the prior knowledge check and try to implement it. Test the bot o
 
 In the next few lessons you will learn more about sentiment analysis. Research this interesting technique in articles such as these on [KDNuggets](https://www.kdnuggets.com/tag/nlp)
 
-## Assignment 
+## Assignment
 
 [Make a bot talk back](assignment.md)

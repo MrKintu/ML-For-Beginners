@@ -1,6 +1,7 @@
 # Sentiment analysis with hotel reviews
 
 Now that you have explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
+
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
 
 ### Filtering & Sentiment Analysis Operations
@@ -29,7 +30,7 @@ Clean the data just a bit more. Add columns that will be useful later, change th
 
       Paris, France
 
-      Vienna, Austria 
+      Vienna, Austria
 
       ```python
       def replace_address(row):
@@ -69,11 +70,11 @@ Clean the data just a bit more. Add columns that will be useful later, change th
 
 2. Process Hotel Meta-review columns
 
-  1. Drop `Additional_Number_of_Scoring`
+1. Drop `Additional_Number_of_Scoring`
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset
 
-  1. Replace `Average_Score` with our own calculated score
+1. Replace `Average_Score` with our own calculated score
 
   ```python
   # Drop `Additional_Number_of_Scoring`
@@ -88,16 +89,16 @@ Clean the data just a bit more. Add columns that will be useful later, change th
    1. Drop `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
 
    2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-     
+
    3. Keep `Tags` for now
 
      - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
 
 4. Process reviewer columns
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
   
-  2. Keep `Reviewer_Nationality`
+2. Keep `Reviewer_Nationality`
 
 ### Tag columns
 
@@ -126,7 +127,7 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Each tag becomes something like: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+Each tag becomes something like: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`.
 
 Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
 
@@ -263,9 +264,9 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### Removing stop words
 
-If you were to run Sentiment Analysis on the Negative and Positive review columns, it could take a long time. Tested on a powerful test laptop with fast CPU,it took 12 - 14 minutes depending on which sentiment library was used. That's a (relatively) long time, so worth investigating if that can be speeded up. 
+If you were to run Sentiment Analysis on the Negative and Positive review columns, it could take a long time. Tested on a powerful test laptop with fast CPU,it took 12 - 14 minutes depending on which sentiment library was used. That's a (relatively) long time, so worth investigating if that can be speeded up.
 
-Removing stop words, or common English words that do not change the sentiment of a sentence, is the first step. By removing them, the sentiment analysis should run faster, but not be less accurate (as the stop words do not affect sentiment, but they do slow down the analysis). 
+Removing stop words, or common English words that do not change the sentiment of a sentence, is the first step. By removing them, the sentiment analysis should run faster, but not be less accurate (as the stop words do not affect sentiment, but they do slow down the analysis).
 
 The longest negative review was 395 words, but after removing the stop words, it is 195 words.
 
@@ -293,7 +294,7 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 
 ### Performing sentiment analysis
 
-Now you should calculate the sentiment analysis for both negative and positive review columns, and store the result in 2 new columns. The test of the sentiment will be to compare it to the reviewer's score for the same review. For instance, if the sentiment thinks the negative review had a sentiment of 1 (extremely positive sentiment) and a positive review sentiment of 1, but the reviewer gave the hotel the lowest score possible, then either the review text doesn't match the score, or the sentiment analyser could not recognize the sentiment correctly. You should expect some sentiment scores to be completely wrong, and often that will be explainable, e.g. the review could be extremely sarcastic "Of course I LOVED sleeping in a room with no heating" and the sentiment analyser thinks that's positive sentiment, even though a human reading it would know it was sarcasm. 
+Now you should calculate the sentiment analysis for both negative and positive review columns, and store the result in 2 new columns. The test of the sentiment will be to compare it to the reviewer's score for the same review. For instance, if the sentiment thinks the negative review had a sentiment of 1 (extremely positive sentiment) and a positive review sentiment of 1, but the reviewer gave the hotel the lowest score possible, then either the review text doesn't match the score, or the sentiment analyser could not recognize the sentiment correctly. You should expect some sentiment scores to be completely wrong, and often that will be explainable, e.g. the review could be extremely sarcastic "Of course I LOVED sleeping in a room with no heating" and the sentiment analyser thinks that's positive sentiment, even though a human reading it would know it was sarcasm.
 
 NLTK supplies different sentiment analyzers to learn with, and you can substitute them and see if the sentiment is more or less accurate. The VADER sentiment analysis is used here.
 
@@ -364,11 +365,12 @@ When you started, you had a dataset with columns and data but not all of it coul
 
 ## Challenge
 
-Now that you have your dataset analyzed for sentiment, see if you can use strategies you've learned in this curriculum (clustering, perhaps?) to determine patterns around sentiment. 
+Now that you have your dataset analyzed for sentiment, see if you can use strategies you've learned in this curriculum (clustering, perhaps?) to determine patterns around sentiment.
 
 ## Review & Self Study
 
 Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) to learn more and use different tools to explore sentiment in text.
-## Assignment 
+
+## Assignment
 
 [Try a different dataset](assignment.md)

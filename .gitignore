@@ -11,6 +11,9 @@ dist
 *.user
 *.userosscache
 *.sln.docstates
+6-NLP/data/Hotel_Reviews.csv
+6-NLP/data/Hotel_Reviews_Filtered.csv
+6-NLP/data/Hotel_Reviews_NLP.csv
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

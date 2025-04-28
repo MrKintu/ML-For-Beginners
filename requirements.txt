@@ -12,3 +12,4 @@ onnx
 onnxruntime
 textblob
 nltk
+scipy

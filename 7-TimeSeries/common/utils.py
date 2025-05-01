@@ -13,9 +13,7 @@ def load_data(data_dir):
     # identify missing time periods in the data (there are none in this dataset).
 
     energy.index = energy['timestamp']
-    energy = energy.reindex(pd.date_range(min(energy['timestamp']),
-                                          max(energy['timestamp']),
-                                          freq='H'))
+    energy = energy.reindex(pd.date_range(min(energy['timestamp']), max(energy['timestamp']), freq='h'))
     energy = energy.drop('timestamp', axis=1)
 
     return energy

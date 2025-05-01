@@ -13,3 +13,7 @@ onnxruntime
 textblob
 nltk
 scipy
+umap-learn
+hdbscan
+keras
+statsmodels

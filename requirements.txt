@@ -1,10 +1,12 @@
 jupyter
+jupyter-datatables
 scikit-learn
 pandas
 numpy
 flask
 flask-cors
 tensorflow
+torch
 matplotlib
 seaborn
 skl2onnx
@@ -17,3 +19,6 @@ umap-learn
 hdbscan
 keras
 statsmodels
+dovpanda
+opencv-python
+gymnasium[classic-control]
